@@ -1,0 +1,2 @@
+export const ADD_ANSWER = "ADD_ANSWER"
+export const HANDLE_ANSWERS = "HANDLE_ANSWERS"
