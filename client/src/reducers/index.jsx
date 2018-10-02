@@ -1,6 +1,11 @@
-import {answersReducer} from "./answers"
 import { combineReducers } from "redux";
+import auth from "./auth";
+import { polls, currentPoll } from "./polls";
+import error from "./error";
 
 export default combineReducers({
-    answersReducer
-})
+  auth,
+  currentPoll,
+  error,
+  polls
+});

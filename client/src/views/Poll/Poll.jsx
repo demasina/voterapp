@@ -6,12 +6,11 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import Answer from "./Answer";
-import { connect } from 'react-redux'
-
+import { connect } from "react-redux";
 
 class Poll extends Component {
   // percent = props => {
- 
+
   //   var res = props.answers.reduce(function(sum, current) {
   //     console.log(current)
   //     let piece = (sum/ current.votes) *100
@@ -22,27 +21,18 @@ class Poll extends Component {
   //   // console.log(piece)
   //   // return piece;
   // }
-  
+
   render() {
     return (
-      
       <div>
-        
         <GridItem>
           <Card chart>
             <CardHeader color="primary">
               <h3>This is poll result</h3>
               <p>Please, choose your answer if you have not yet</p>
-              
             </CardHeader>
             <CardBody>
-                <h4>{this.props.pollname}</h4>
-                <ul>
-                {this.props.poll.answers.map((item) => {
-                  
-                  return (<Answer allVotes={this.props.allVotes} key={item.id} answer={item.text} votes={item.votes} id={item.id}/>)
-                })}
-                </ul>
+              <h4>das</h4>
             </CardBody>
             <CardFooter />
           </Card>
@@ -52,10 +42,4 @@ class Poll extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    allVotes: state.answersReducer.allVotes
-  }
-}
-
-export default connect (mapStateToProps) (Poll);
+export default Poll;

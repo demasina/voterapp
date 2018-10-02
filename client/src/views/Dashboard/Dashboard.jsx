@@ -29,10 +29,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import Button from "components/CustomButtons/Button.jsx";
 import { bugs, website, server } from "variables/general.jsx";
-import Poll from "../Poll/Poll"
+import Poll from "../Poll/Poll";
 
 import {
   dailySalesChart,
@@ -43,30 +43,26 @@ import {
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 import { Typography } from "@material-ui/core";
 
-
-
 class Dashboard extends React.Component {
   render() {
     const { classes } = this.props;
-    
+
     return (
       <div>
         <GridContainer>
           <GridItem xs={12} sm={12} md={10}>
-            <Button color="primary" type="button">ADD NEW POLL</Button>
+            <Button color="primary" type="button">
+              ADD NEW POLL
+            </Button>
             <Card>
               <CardHeader className="dash-header">
                 <h3>Polls</h3>
-                <Button  color="primary" type="button">NOT VOTED POLLS</Button>
-                <Button  type="button">VOTED POLLS</Button>
+                <Button color="primary" type="button">
+                  NOT VOTED POLLS
+                </Button>
+                <Button type="button">VOTED POLLS</Button>
               </CardHeader>
-              <CardBody>
-                
-                  {this.props.polls.map((poll) => {
-                    return <Poll key={poll.id} pollname={poll.name} id={poll.id} poll={poll}/>
-                  })}
-                
-              </CardBody>
+              <CardBody />
             </Card>
           </GridItem>
         </GridContainer>
@@ -75,11 +71,4 @@ class Dashboard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state)
-  return {
-    polls: state.answersReducer.polls
-  }
-}
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;
