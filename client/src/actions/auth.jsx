@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { addError, removeError } from "./error";
 import { SET_CURRENT_USER } from "./actionTypes";
 import API from "../services/api";
@@ -35,11 +34,3 @@ export const authUser = (path, data) => {
     }
   };
 };
-=======
-import {SET_CURRENT_USER} from './actionTypes';
-
-export const setCurrentUser = user => {
-    type: SET_CURRENT_USER,
-    user
-}
->>>>>>> be22a6074dfd7d836596720731b1c09d83080c6d
