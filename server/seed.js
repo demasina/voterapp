@@ -14,12 +14,21 @@ const users = [
 
 const polls = [
   {
+<<<<<<< HEAD
+    question: 'What?',
+    options: ['Not', 'Yet', 'Spot'],
+  },
+  { question: 'Who is the best president', options: ['Putin', 'Putin)'] },
+  { question: 'Kirill or Mefodiy', options: ['Kirill', 'Mefodiy'] },
+  { question: 'Angular or React?', options: ['Angular', 'React'] },
+=======
     question: 'Which is the best JavaScript framework',
     options: ['Angular', 'React', 'VueJS'],
   },
   { question: 'Who is the best president', options: ['Putin', 'Putin)'] },
   { question: 'Truth or dare', options: ['Truth', 'Dare'] },
   { question: 'Boolean?', options: ['True', 'False'] },
+>>>>>>> 379cf132f3c5735726fa117955bf0fac2b8281b2
 ];
 
 const seed = async () => {

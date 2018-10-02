@@ -18,6 +18,10 @@ import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
 // core components
+<<<<<<< HEAD
+import Quote from "components/Typography/Quote"
+=======
+>>>>>>> 379cf132f3c5735726fa117955bf0fac2b8281b2
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Table from "components/Table/Table.jsx";
@@ -42,11 +46,31 @@ import {
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 import { Typography } from "@material-ui/core";
+<<<<<<< HEAD
+import api from '../../services/api';
+=======
+>>>>>>> 379cf132f3c5735726fa117955bf0fac2b8281b2
 
 class Dashboard extends React.Component {
+<<<<<<< HEAD
+  async componentDidMount() {
+    const result = await api.call('post', 'auth/login', {
+      username: 'anton',
+      password: 'antoha'
+    })
+
+    console.log(result)
+  }
+  render() {
+=======
   render() {
     const { classes } = this.props;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 379cf132f3c5735726fa117955bf0fac2b8281b2
+    
+>>>>>>> be22a6074dfd7d836596720731b1c09d83080c6d
     return (
       <div>
         <GridContainer>
@@ -62,7 +86,24 @@ class Dashboard extends React.Component {
                 </Button>
                 <Button type="button">VOTED POLLS</Button>
               </CardHeader>
+<<<<<<< HEAD
               <CardBody />
+=======
+              <CardBody>
+<<<<<<< HEAD
+                <Typography>
+                  Polls
+                </Typography>
+
+=======
+                
+                  {this.props.polls.map((poll) => {
+                    return <Poll key={poll.id} pollname={poll.name} id={poll.id} poll={poll}/>
+                  })}
+                
+>>>>>>> 379cf132f3c5735726fa117955bf0fac2b8281b2
+              </CardBody>
+>>>>>>> be22a6074dfd7d836596720731b1c09d83080c6d
             </Card>
           </GridItem>
         </GridContainer>
@@ -71,4 +112,20 @@ class Dashboard extends React.Component {
   }
 }
 
+<<<<<<< HEAD
 export default Dashboard;
+=======
+<<<<<<< HEAD
+
+export default Dashboard;
+=======
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    polls: state.answersReducer.polls
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);
+>>>>>>> 379cf132f3c5735726fa117955bf0fac2b8281b2
+>>>>>>> be22a6074dfd7d836596720731b1c09d83080c6d
