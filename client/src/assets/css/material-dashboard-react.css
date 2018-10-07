@@ -14,28 +14,30 @@
 
  */
 .ct-grid {
-    stroke: rgb(145, 1, 1);
+    stroke: rgba(255, 255, 255, 0.2);
     stroke-width: 1px;
-    stroke-dasharray: 1px;
-}
-.ct-series {
-    width: 40px;
-}
-.ct-series-a .ct-point, .ct-series-a .ct-line, .ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
-    stroke-width: 10px;
-    stroke: #6500ff;
-    
+    stroke-dasharray: 2px;
 }
 
-.ct-chart {
-    /* width: 50%; */
+.ct-series-a .ct-point, .ct-series-a .ct-line, .ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
+    stroke: rgba(255, 255, 255, 0.8);
 }
-.ct-series .ct-bar {
-    width: 50%;
+
+.ct-label.ct-horizontal.ct-end {
+    -webkit-box-align: flex-start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    -webkit-box-pack: flex-start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    text-anchor: start;
 }
+
 .ct-label {
-    
-    color: rgb(0, 0, 0);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .ct-chart-line .ct-label, .ct-chart-bar .ct-label {
@@ -48,7 +50,6 @@
 }
 
 .ct-label {
-    
     fill: rgba(0, 0, 0, 0.4);
     line-height: 1;
 }
@@ -170,36 +171,6 @@ label {
     line-height: 1.42857;
     color: #AAAAAA;
     font-weight: 400;
-}
-
-footer {
-    padding: 15px 0;
-}
-
-footer ul {
-    margin-bottom: 0;
-    padding: 0;
-    list-style: none;
-}
-
-footer ul li {
-    display: inline-block;
-}
-
-footer ul li a {
-    color: inherit;
-    padding: 15px;
-    font-weight: 500;
-    font-size: 12px;
-    text-transform: uppercase;
-    border-radius: 3px;
-    text-decoration: none;
-    position: relative;
-    display: block;
-}
-
-footer ul li a:hover {
-    text-decoration: none;
 }
 
 @media (max-width: 991px) {

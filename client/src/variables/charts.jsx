@@ -88,7 +88,7 @@ const emailsSubscriptionChart = {
     series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]]
   },
   options: {
-    axisY: {
+    axisX: {
       showGrid: false
     },
     low: 0,
@@ -105,7 +105,7 @@ const emailsSubscriptionChart = {
       "screen and (max-width: 640px)",
       {
         seriesBarDistance: 5,
-        axisY: {
+        axisX: {
           labelInterpolationFnc: function(value) {
             return value[0];
           }
@@ -129,10 +129,6 @@ const emailsSubscriptionChart = {
     }
   }
 };
-
-// ##############################
-// // // Completed Tasks
-// #############################
 
 const completedTasksChart = {
   data: {

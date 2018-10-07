@@ -3,30 +3,9 @@ import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
 
-/*
-var style = {
+const style = {
   grid: {
-    paddingLeft: "6px",
-	marginRight: "-6px",
-	marginBottom: "-20px",
-	marginLeft: "10px"
-  }
-};
-*/
-
-/*
-var style = {
-  grid: {
-    padding: "0 15px"
-  }
-};
-*/
-
-var style = {
-  grid: {
-    padding: "0px",
-	marginRight: "30px",
-	marginBottom: "10px"
+    padding: "0 15px !important"
   }
 };
 

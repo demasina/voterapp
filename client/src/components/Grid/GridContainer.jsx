@@ -2,18 +2,11 @@ import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
-/*
-const style = {
-  grid: {
-    margin: "0 -15px",
-    width: "auto"
-  }
-};*/
 
 const style = {
   grid: {
-    margin: "0 1px",
-    width: "auto"
+    margin: "0 -15px !important",
+    width: "unset"
   }
 };
 

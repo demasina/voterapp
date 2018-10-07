@@ -1,77 +1,141 @@
 import React from "react";
 import PropTypes from "prop-types";
-// react plugin for creating charts
-import ChartistGraph from "react-chartist";
-// @material-ui/core
-import withStyles from "@material-ui/core/styles/withStyles";
-import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
-import BugReport from "@material-ui/icons/BugReport";
-import Code from "@material-ui/icons/Code";
-import Cloud from "@material-ui/icons/Cloud";
-// core components
-import Quote from "components/Typography/Quote";
-import GridItem from "components/Grid/GridItem.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import Table from "components/Table/Table.jsx";
-import Tasks from "components/Tasks/Tasks.jsx";
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-import Danger from "components/Typography/Danger.jsx";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { push } from "react-router-redux";
+
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import CardFooter from "components/Card/CardFooter.jsx";
-import { connect } from "react-redux";
-import Button from "components/CustomButtons/Button.jsx";
-import { bugs, website, server } from "variables/general.jsx";
-import Poll from "../Poll/Poll";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 
-import {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  completedTasksChart
-} from "variables/charts.jsx";
-
+import withStyles from "@material-ui/core/styles/withStyles";
+import getVisiblePolls from "../../selectors/pollsSelector";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-import { Typography } from "@material-ui/core";
-import api from "../../services/api";
+import { getPolls } from "../../actions/polls";
+import { setFilter } from "../../actions/filters";
 
 class Dashboard extends React.Component {
+  state = {
+    activeFilter: 0
+  };
+
+  setFilter = filterValue => {
+    this.setState(
+      {
+        activeFilter: filterValue
+      },
+      () => {
+        this.props.setFilter(!!filterValue);
+      }
+    );
+  };
+
+  componentDidMount() {
+    this.props.getPolls();
+  }
+
+  addNewPoll = () => {
+    this.props.push("/create");
+  };
+
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        <GridContainer>
-          <GridItem xs={12} sm={12} md={10}>
-            <Button color="primary" type="button">
-              ADD NEW POLL
-            </Button>
-            <Card>
-              <CardHeader className="dash-header">
-                <h3>Polls</h3>
-                <Button color="primary" type="button">
-                  NOT VOTED POLLS
-                </Button>
-                <Button type="button">VOTED POLLS</Button>
-              </CardHeader>
-              <CardBody>
-                <Typography>Polls</Typography>
-              </CardBody>
-            </Card>
-          </GridItem>
-        </GridContainer>
+      <div className="page-container">
+        <Button
+          variant="raised"
+          style={{
+            backgroundColor: "#ae00ae",
+            color: "white",
+            alignSelf: "flex-start",
+            fontWeight: "300",
+            textTransform: "uppercase",
+            marginBottom: "20px"
+          }}
+          onClick={this.addNewPoll}
+        >
+          add new poll
+        </Button>
+
+        <Card>
+          <CardHeader color="info">
+          <h3>Polls</h3>
+            <div className="filters">
+              <Button
+                variant="raised"
+                style={{
+                  backgroundColor:
+                    this.state.activeFilter === 0 ? "#ae00ae" : "#ccc",
+                  color: "white",
+                  fontWeight: "300",
+                  padding: "12px 20px",
+                  textTransform: "uppercase"
+                }}
+                className={classes.primary}
+                onClick={() => this.setFilter(0)}
+              >
+                not voted polls
+              </Button>
+
+              <Button
+                variant="raised"
+                style={{
+                  backgroundColor:
+                    this.state.activeFilter === 1 ? "#ae00ae" : "#ccc",
+                  color: "white",
+                  alignSelf: "flex-start",
+                  fontWeight: "300",
+                  padding: "12px 20px",
+                  textTransform: "uppercase"
+                }}
+                className={classes.primary}
+                onClick={() => this.setFilter(1)}
+              >
+                voted polls
+              </Button>
+            </div>
+          </CardHeader>
+          <CardBody>
+            <List>
+              {this.props.polls.map(poll => (
+                <ListItem
+                  key={poll._id}
+                  className="polls-item"
+                  divider={true}
+                  style={{
+                    margin: "5px"
+                  }}
+                >
+                  <Link to={`/poll/${poll._id}`} className="polls-item-link">
+                    {poll.question}
+                  </Link>
+                </ListItem>
+              ))}
+            </List>
+          </CardBody>
+        </Card>
       </div>
     );
   }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  getPolls: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
+  push: PropTypes.func.isRequired,
+  polls: PropTypes.array
+};
+
+const mapStateToProps = (state, props) => ({
+  polls: getVisiblePolls(state, props)
+});
+
+export default connect(
+  mapStateToProps,
+  { getPolls, setFilter, push }
+)(withStyles(dashboardStyle)(Dashboard));

@@ -107,8 +107,8 @@ const sidebarStyle = theme => ({
       height: "100%",
       content: '""',
       display: "block",
-      background: "#000",
-      opacity: ".8"
+      background: "#222",
+      opacity: "1"
     }
   },
   list: {

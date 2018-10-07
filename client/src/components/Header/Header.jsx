@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -10,19 +11,22 @@ import Hidden from "@material-ui/core/Hidden";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
-import HeaderLinks from "./HeaderLinks";
-import Button from "components/CustomButtons/Button";
+import HeaderLinks from "./HeaderLinks.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 
 import headerStyle from "assets/jss/material-dashboard-react/components/headerStyle.jsx";
 
 function Header({ ...props }) {
   function makeBrand() {
-    var name;
+    var name = "...";
+
     props.routes.map((prop, key) => {
-      if (prop.path === props.location.pathname) {
+      if (
+        prop.path === props.location.pathname ||
+        (prop.path === "/poll" && props.location.pathname.match(/poll/))
+      ) {
         name = prop.navbarName;
       }
-      return null;
     });
     return name;
   }

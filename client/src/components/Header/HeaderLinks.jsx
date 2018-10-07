@@ -1,29 +1,29 @@
 import React from "react";
-import classNames from "classnames";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Hidden from "@material-ui/core/Hidden";
-import Poppers from "@material-ui/core/Popper";
 // @material-ui/icons
 import Person from "@material-ui/icons/Person";
-import Notifications from "@material-ui/icons/Notifications";
-import Dashboard from "@material-ui/icons/Dashboard";
-import Search from "@material-ui/icons/Search";
 // core components
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import Dropdown from "../Dropdown";
 
-import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle";
+import { logoutUser } from "../../actions/auth";
+
+import headerLinksStyle from "assets/jss/material-dashboard-react/components/headerLinksStyle.jsx";
 
 class HeaderLinks extends React.Component {
   state = {
-    open: false
+    open: false,
+    menuList: [
+      {
+        title: "Logout",
+        handleClick: this.props.logoutUser
+      }
+    ]
   };
+
   handleToggle = () => {
     this.setState(state => ({ open: !state.open }));
   };
@@ -38,74 +38,36 @@ class HeaderLinks extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { open } = this.state;
+
     return (
-      <div>
-        <div className={classes.manager}>
-           <Button
-            buttonRef={node => {
-              this.anchorEl = node;
-            }}
-            color={window.innerWidth > 959 ? "transparent" : "white"}
-            justIcon={window.innerWidth > 959}
-            simple={!(window.innerWidth > 959)}
-            aria-owns={open ? "menu-list-grow" : null}
-            aria-haspopup="true"
-            onClick={this.handleToggle}
-            className={classes.buttonLink}
-          >
-			<Person className={classes.icons} />
-            <Hidden mdUp implementation="css">
-              <p onClick={this.handleClick} className={classes.linkText}>
-                Notification
-              </p>
-            </Hidden>
-          </Button> 
-          <Poppers
-            open={open}
-            anchorEl={this.anchorEl}
-            transition
-            disablePortal
-            className={
-              classNames({ [classes.popperClose]: !open }) +
-              " " +
-              classes.pooperNav
-            }
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                id="menu-list-grow"
-                style={{
-                  transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom"
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={this.handleClose}>
-                    <MenuList role="menu">
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        Sign In
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        Sign Up
-                      </MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Poppers>
-        </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center"
+        }}
+      >
+        {this.props.auth.isAuthenticated && this.props.auth.user.email}
+        <Dropdown menuList={this.state.menuList}>
+          <Person className={classes.icons} />
+          <Hidden mdUp implementation="css">
+            <p className={classes.linkText}>Profile</p>
+          </Hidden>
+        </Dropdown>
       </div>
     );
   }
 }
 
-export default withStyles(headerLinksStyle)(HeaderLinks);
+HeaderLinks.propTypes = {
+  classes: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(withStyles(headerLinksStyle)(HeaderLinks));

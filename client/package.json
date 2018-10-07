@@ -1,7 +1,7 @@
 {
-  "name": "material-dashboard-react",
+  "name": "voter",
   "version": "1.5.0",
-  "description": "Material Dashboard React. Coded by Creative Tim",
+  "description": "voter",
   "private": false,
   "main": "dist/index.js",
   "dependencies": {
@@ -10,10 +10,10 @@
     "@types/googlemaps": "3.30.13",
     "@types/markerclustererplus": "2.1.33",
     "ajv": "^5.0.0",
-    "jwt-decode": "^2.2.0",
     "axios": "^0.18.0",
     "chartist": "0.10.1",
     "classnames": "2.2.6",
+    "jwt-decode": "^2.2.0",
     "npm-run-all": "4.1.3",
     "perfect-scrollbar": "1.4.0",
     "react": "16.5.2",
@@ -21,11 +21,13 @@
     "react-dom": "16.5.2",
     "react-google-maps": "9.4.5",
     "react-redux": "^5.0.7",
-    "react-router-dom": "4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.5",
     "react-swipeable-views": "0.12.17",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "reselect": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
